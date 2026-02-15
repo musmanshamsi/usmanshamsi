@@ -1,0 +1,39 @@
+/* =========================================
+   GLOBAL SYSTEM
+   ========================================= */
+
+:root {
+  --max-width: 75rem; /* 1200px */
+  --container-padding: clamp(1rem, 4vw, 3rem);
+
+  /* Fluid spacing scale */
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(1rem, 2vw, 1.5rem);
+  --space-md: clamp(1.5rem, 3vw, 2.5rem);
+  --space-lg: clamp(2rem, 5vw, 4rem);
+
+  /* Radius */
+  --radius-lg: 1.875rem; /* 30px */
+  --radius-md: 1.25rem;
+  --radius-full: 999px;
+
+  /* Typography */
+  --fs-hero: clamp(2.5rem, 6vw, 5rem);
+  --fs-h2: clamp(2rem, 4vw, 3rem);
+  --fs-h3: clamp(1.4rem, 2.5vw, 2rem);
+  --fs-body: clamp(1rem, 1.2vw, 1.05rem);
+  --fs-small: clamp(0.75rem, 1vw, 0.85rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Capriola', sans-serif;
+  line-height: 1.6;
+  background: #f8f8f8;
+}
