@@ -16,7 +16,7 @@ const Navbar = () => {
       <nav className="navbar">
         {/* Logo */}
         <a href="#home" className="logo" onClick={closeMenu}>
-          Usman<span className="logo-dot">.</span>
+          Usman Shamsi<span className="logo-dot">.</span>
         </a>
 
         {/* Navigation Links */}
