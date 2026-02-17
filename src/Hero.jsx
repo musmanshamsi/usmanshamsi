@@ -63,9 +63,20 @@ const Hero = () => {
           <div className="divider-line"></div>
           
           <p className="intro">
-            Crafting elegant digital solutions. A passionate developer and explorer 
-            dedicated to building innovative and user-centric web experiences that leave a mark.
-          </p>
+  Computer Science graduate from{" "}
+  <a
+    href="https://www.iba-suk.edu.pk/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="intro-link"
+  >
+    Sukkur IBA University
+  </a>
+  , passionate about crafting elegant and efficient digital solutions. 
+  I specialize in building innovative, user-focused web applications 
+  that combine clean design with strong functionality.
+</p>
+
           
           <div className="cta-buttons">
             <a href="#appointment" className="btn-premium primary">

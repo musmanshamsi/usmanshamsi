@@ -6,7 +6,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Top fluid padding scales from 4rem on mobile to 6rem on desktop */
   padding: clamp(4rem, 8vw, 6rem) clamp(1rem, 5vw, 4rem) 0; 
   box-sizing: border-box;
   overflow: hidden;
@@ -22,6 +21,7 @@
   overflow: hidden;
   box-shadow: 0 1.875rem 3.75rem rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
   align-items: stretch;
+  min-height: 500px; /* Prevents height jumping when switching tabs */
 }
 
 .about-content-panel {
@@ -36,7 +36,7 @@
 }
 
 .about-text-content {
-  max-width: 34.375rem; /* 550px */
+  max-width: 38rem; 
   width: 100%;
 }
 
@@ -61,14 +61,83 @@
 
 .about-text-content h2 {
   font-family: 'Zefani', serif;
-  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   color: #000;
   line-height: 1.1;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   letter-spacing: -0.05rem;
 }
 
-.about-text-content p {
+/* --- HCI Interactive Tabs --- */
+.about-tabs {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0.5rem;
+  overflow-x: auto; /* Allows swiping on very small phones */
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+.about-tabs::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-family: 'Capriola', sans-serif;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: #333;
+}
+
+.tab-btn.active {
+  color: #000;
+}
+
+/* The animated underline for active tab */
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.tab-btn.active::after {
+  width: 100%;
+}
+
+/* --- Tab Content --- */
+.tab-content-container {
+  min-height: 220px; /* Keeps the box from collapsing on shorter tabs */
+}
+
+.tab-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.fade-in {
+  animation: fadeInOpacity 0.5s ease forwards;
+}
+
+@keyframes fadeInOpacity {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.tab-pane p {
   font-family: 'Capriola', sans-serif;
   font-size: clamp(0.85rem, 2vw, 0.95rem);
   color: #555;
@@ -76,13 +145,80 @@
   margin-bottom: 0.75rem;
 }
 
+.tab-pane h4 {
+  font-family: 'Zefani', serif;
+  font-size: 1.2rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02rem;
+}
+
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+
+/* --- Custom Inline Links --- */
+.intro-link {
+  color: #111111; /* Kept dark for visibility on white background */
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+  font-family: 'Capriola', sans-serif;
+}
+
+.intro-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -3px;
+  background-color: #111111;
+  transition: width 0.3s ease;
+}
+
+.intro-link:hover {
+  color: #555555;
+}
+
+.intro-link:hover::after {
+  width: 100%;
+}
+
+/* --- Skills Tags --- */
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skills-list li {
+  font-family: 'Capriola', sans-serif;
+  font-size: 0.75rem;
+  font-weight: bold;
+  background: #f0f0f0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.skills-list li:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* --- Stats Bar --- */
 .about-stats-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-top: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .stat-item {
@@ -110,6 +246,7 @@
   font-weight: bold;
 }
 
+/* --- Visual Panel --- */
 .about-visual-panel {
   flex: 0.8;
   position: relative;
@@ -134,7 +271,7 @@
   z-index: 0;
 }
 
-/* Animations kept as requested */
+/* Animations */
 .reveal-element { opacity: 0; transform: translateY(1.875rem); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 .is-visible .reveal-element { opacity: 1; transform: translateY(0); }
 .is-visible .delay-1 { opacity: 1; transform: translateY(0); transition: 0.6s ease 0.1s; }
@@ -142,36 +279,41 @@
 .is-visible .delay-3 { opacity: 1; transform: translateY(0); transition: 0.6s ease 0.3s; }
 .is-visible .delay-4 { opacity: 1; transform: translateY(0); transition: 0.6s ease 0.4s; }
 
-/* Mobile Structural Shifts */
+/* --- Mobile Structural Shifts --- */
 @media (max-width: 56.25rem) { /* 900px */
   .about-curved-box {
-    display: block; 
-    min-height: clamp(35rem, 80vh, 45rem);
+    display: flex; 
+    flex-direction: column-reverse; /* Put image on top, content on bottom */
+    min-height: auto;
   }
 
   .about-visual-panel {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 300px; /* Fixed height for image on mobile */
+    flex: none;
   }
 
-  .about-visual-panel::after { opacity: 1; }
+  .about-bg-img {
+    position: relative;
+  }
+
+  .about-visual-panel::after { opacity: 0; } /* Remove dark overlay on mobile so image pops */
 
   .about-content-panel {
     width: 100%;
-    min-height: clamp(35rem, 80vh, 45rem);
+    min-height: auto;
   }
 
-  .section-subtitle { color: rgba(255, 255, 255, 0.7); }
-  .section-subtitle .line { background-color: rgba(255, 255, 255, 0.7); }
-  .about-text-content h2 { color: #ffffff; }
-  .about-text-content p { color: rgba(255, 255, 255, 0.85); }
-  .stat-item h3 { color: #ffffff; }
-  .stat-item p { color: rgba(255, 255, 255, 0.7); }
+  .about-tabs {
+    gap: 1rem;
+  }
+
+  .tab-btn {
+    font-size: 0.9rem;
+  }
 
   .about-stats-bar {
     grid-template-columns: repeat(2, 1fr); 
     gap: 1.5rem;
-    border-top-color: rgba(255, 255, 255, 0.2);
   }
 }

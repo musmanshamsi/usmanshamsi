@@ -45,6 +45,34 @@
   z-index: 2;
 }
 
+.intro-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.intro-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -3px;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.intro-link:hover {
+  color: #dddddd;
+}
+
+.intro-link:hover::after {
+  width: 100%;
+}
+
+
 .hero-content-wrapper {
   position: relative;
   z-index: 3;
