@@ -1,23 +1,12 @@
-import React from 'react';
-import Navbar from './Navbar';
-import Hero from './Hero';
-import About from './About';
-import Projects from './Projects';
-import Contact from './Contact';
-import Footer from './Footer';
-// import { Contact } from 'lucide-react';
+import ColourList from './ColourList';
 
-function App() {
+export default function App() {
+  const myColours = ["Red", "Blue", "Green"];
+
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
-      <Footer />
+    <div style={{ padding: '20px' }}>
+      <h1>My Colour App</h1>
+      <ColourList colourArray={myColours} />
     </div>
   );
 }
-
-export default App;
